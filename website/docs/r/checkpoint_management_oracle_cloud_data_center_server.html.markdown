@@ -26,19 +26,18 @@ resource "checkpoint_management_oracle_cloud_data_center_server" "testOracleClou
 
 The following arguments are supported:
 
-* `name` - (Required) Object name. Must be unique in the domain.
-* `authentication_method` - (Required) key-authentication uses the Service Account private key file to authenticate. vm-instance-authentication uses VM Instance to authenticate. This option requires the Security Management Server deployed in Oracle Cloud, and running in a dynamic group with the required permissions. 
-* `private_key` - (Required) An Oracle Cloud API key PEM file, encoded in base64. Required for authentication-method: key-authentication.
-* `key_user` - (Required) An Oracle Cloud user id associated with key. Required for authentication-method: key-authentication.
-* `key_tenant` - (Required) An Oracle Cloud tenancy id where the key was created. Required for authentication-method: key-authentication.
-* `key_region` - (Required) An Oracle Cloud region for where to create scanner. Required for authentication-method: key-authentication.
+* `name` - (**Required**) Object name. Must be unique in the domain.
+* `authentication_method` - (**Required**) key-authentication uses the Service Account private key file to authenticate. vm-instance-authentication uses VM Instance to authenticate. This option requires the Security Management Server deployed in Oracle Cloud, and running in a dynamic group with the required permissions. 
+* `private_key` - (**Required**) An Oracle Cloud API key PEM file, encoded in base64. Required for authentication-method: key-authentication.
+* `key_user` - (**Required**) An Oracle Cloud user id associated with key. Required for authentication-method: key-authentication.
+* `key_tenant` - (**Required**) An Oracle Cloud tenancy id where the key was created. Required for authentication-method: key-authentication.
+* `key_region` - (**Required**) An Oracle Cloud region for where to create scanner. Required for authentication-method: key-authentication.
 * `tags` - (Optional) Collection of tag identifiers.
 * `color` - (Optional) Color of the object. Should be one of existing colors.
 * `comments` - (Optional) Comments string.
 * `ignore_warnings` - (Optional) Apply changes ignoring warnings.
 * `ignore_errors` - (Optional) Apply changes ignoring errors. You won't be able to publish such a changes. If ignore-warnings flag was omitted - warnings will also be ignored.
 * `automatic_refresh` - Indicates whether the data center server's content is automatically updated.
-* `data_center_type` - Data center type.
 * `properties` - Data center properties. properties blocks are documented below.
 
 
