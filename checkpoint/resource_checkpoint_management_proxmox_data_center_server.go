@@ -33,13 +33,13 @@ func resourceManagementProxmoxDataCenterServer() *schema.Resource {
 				Type:        schema.TypeString,
 				Required:    true,
 				Sensitive:   true,
-				Description: "realm of the Proxmox user",
+				Description: "Realm of the Proxmox user.",
 			},
 			"token_id": {
 				Type:        schema.TypeString,
 				Required:    true,
 				Sensitive:   true,
-				Description: "API Token Id",
+				Description: "API Token Id.",
 			},
 			"username": {
 				Type:        schema.TypeString,
@@ -51,7 +51,7 @@ func resourceManagementProxmoxDataCenterServer() *schema.Resource {
 				Type:        schema.TypeString,
 				Required:    true,
 				Sensitive:   true,
-				Description: "Secret token API",
+				Description: "Secret token API.",
 			},
 			"certificate_fingerprint": {
 				Type:        schema.TypeString,
