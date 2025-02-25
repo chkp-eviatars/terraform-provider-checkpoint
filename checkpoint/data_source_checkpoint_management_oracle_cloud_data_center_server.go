@@ -25,11 +25,6 @@ func dataSourceManagementOracleCloudDataCenterServer() *schema.Resource {
 				Computed:    true,
 				Description: "Indicates whether the data center server's content is automatically updated.",
 			},
-			"data_center_type": {
-				Type:        schema.TypeString,
-				Computed:    true,
-				Description: "Data Center type.",
-			},
 			"properties": {
 				Type:        schema.TypeList,
 				Computed:    true,

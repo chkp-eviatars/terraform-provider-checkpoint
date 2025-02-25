@@ -85,11 +85,6 @@ func resourceManagementNutanixDataCenterServer() *schema.Resource {
 				Computed:    true,
 				Description: "Indicates whether the data center server's content is automatically updated.",
 			},
-			"data_center_type": {
-				Type:        schema.TypeString,
-				Computed:    true,
-				Description: "Data Center type.",
-			},
 		},
 	}
 }
@@ -197,10 +192,6 @@ func readManagementNutanixDataCenterServer(d *schema.ResourceData, m interface{}
 
 	if v := nutanixDataCenterServer["name"]; v != nil {
 		_ = d.Set("name", v)
-	}
-
-	if v := nutanixDataCenterServer["data-center-type"]; v != nil {
-		_ = d.Set("data_center_type", v)
 	}
 
 	if nutanixDataCenterServer["properties"] != nil {
