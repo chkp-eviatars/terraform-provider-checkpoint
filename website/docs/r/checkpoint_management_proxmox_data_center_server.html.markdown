@@ -10,7 +10,7 @@ description: |- This resource allows you to execute Check Point Proxmox data cen
 This resource allows you to execute Check Point Proxmox Data Center Server.
 
 ### Note:
-* Proxmox is supported from R82.10 and above
+Proxmox is supported from R82.10 and above
 
 
 ## Example Usage
