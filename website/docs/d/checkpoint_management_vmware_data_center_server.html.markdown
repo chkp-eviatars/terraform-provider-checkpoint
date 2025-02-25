@@ -14,7 +14,7 @@ Use this data source to get information on an existing VMware Data Center Server
 ```hcl
 resource "checkpoint_management_vmware_data_center_server" "testVMware" {
   name     = "MyVMware"
-  type     = "vcenter"
+  type     = "vcenter" # or "nsxt" or "globalnsxt"
   username = "USERNAME"
   password = "PASSWORD"
   hostname = "HOSTNAME"
