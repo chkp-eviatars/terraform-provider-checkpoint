@@ -9,9 +9,6 @@ description: |- Use this data source to get information on an existing Nuage Dat
 
 Use this data source to get information on an existing Nuage Data Center Server.
 
-### Note:
-Nuage DC is deprecated from R82.10 and above
-
 ## Example Usage
 
 ```hcl
