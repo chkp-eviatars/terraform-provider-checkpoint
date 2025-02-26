@@ -25,10 +25,10 @@ resource "checkpoint_management_nuage_data_center_server" "testNuage" {
 
 The following arguments are supported:
 
-* `name` - (**Required**) Object name.
-* `hostname` - (**Required**) IP address or hostname of the Nuage server.
-* `username` - (**Required**) Username of the Nuage administrator.
-* `organization` - (**Required**) Organization name or enterprise.
+* `name` - (Required) Object name.
+* `hostname` - (Required) IP address or hostname of the Nuage server.
+* `username` - (Required) Username of the Nuage administrator.
+* `organization` - (Required) Organization name or enterprise.
 * `password` - (Optional)  Password of the Nuage administrator.
 * `password_base64` - (Optional) Password of the Nuage administrator encoded in Base64.
 * `certificate_fingerprint` - (Optional) Specify the SHA-1 or SHA-256 fingerprint of the Data Center Server's certificate.
