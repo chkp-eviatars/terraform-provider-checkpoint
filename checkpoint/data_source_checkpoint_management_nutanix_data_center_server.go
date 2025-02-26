@@ -163,8 +163,10 @@ func dataSourceNutanixDataCenterServerRead(d *schema.ResourceData, m interface{}
 	if v := nutanixDataCenterServer["automatic-refresh"]; v != nil {
 		_ = d.Set("automatic_refresh", v)
 	}
+
 	if v := nutanixDataCenterServer["data-center-type"]; v != nil {
 		_ = d.Set("data_center_type", v)
 	}
+
 	return nil
 }
