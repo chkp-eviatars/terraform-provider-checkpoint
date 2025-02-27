@@ -52,6 +52,16 @@ func dataSourceManagementProxmoxDataCenterServer() *schema.Resource {
 				Computed:    true,
 				Description: "When set to false, the current Data Center Server's certificate should be trusted, either by providing the certificate-fingerprint argument or by relying on a previously trusted certificate of this hostname.\n\nWhen set to true, trust the current Data Center Server's certificate as-is.",
 			},
+			"automatic_refresh": {
+				Type:        schema.TypeBool,
+				Computed:    true,
+				Description: "Indicates whether the data center server's content is automatically updated.",
+			},
+			"data_center_type": {
+				Type:        schema.TypeString,
+				Computed:    true,
+				Description: "Data Center type.",
+			},
 			"tags": {
 				Type:        schema.TypeSet,
 				Computed:    true,
@@ -154,6 +164,14 @@ func dataSourceProxmoxDataCenterServerRead(d *schema.ResourceData, m interface{}
 
 	if v := proxmoxDataCenterServer["ignore-errors"]; v != nil {
 		_ = d.Set("ignore_errors", v)
+	}
+
+	if v := proxmoxDataCenterServer["automatic-refresh"]; v != nil {
+		_ = d.Set("automatic_refresh", v)
+	}
+
+	if v := proxmoxDataCenterServer["data-center-type"]; v != nil {
+		_ = d.Set("data_center_type", v)
 	}
 
 	return nil

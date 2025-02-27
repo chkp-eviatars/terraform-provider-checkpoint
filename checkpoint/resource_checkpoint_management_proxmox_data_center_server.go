@@ -32,19 +32,16 @@ func resourceManagementProxmoxDataCenterServer() *schema.Resource {
 			"realm": {
 				Type:        schema.TypeString,
 				Required:    true,
-				Sensitive:   true,
 				Description: "Realm of the Proxmox user.",
 			},
 			"token_id": {
 				Type:        schema.TypeString,
 				Required:    true,
-				Sensitive:   true,
 				Description: "API Token Id.",
 			},
 			"username": {
 				Type:        schema.TypeString,
 				Required:    true,
-				Sensitive:   true,
 				Description: "Username of the Proxmox server",
 			},
 			"secret": {
@@ -94,6 +91,16 @@ func resourceManagementProxmoxDataCenterServer() *schema.Resource {
 				Optional:    true,
 				Description: "Apply changes ignoring errors. You won't be able to publish such a changes. If ignore-warnings flag was omitted - warnings will also be ignored.",
 				Default:     false,
+			},
+			"automatic_refresh": {
+				Computed:    true,
+				Type:        schema.TypeBool,
+				Description: "Indicates whether the data center server's content is automatically updated.",
+			},
+			"data_center_type": {
+				Type:        schema.TypeString,
+				Computed:    true,
+				Description: "Data Center type.",
 			},
 		},
 	}
@@ -158,6 +165,10 @@ func createManagementProxmoxDataCenterServer(d *schema.ResourceData, m interface
 		proxmoxDataCenterServer["ignore-errors"] = v.(bool)
 	}
 
+	if v, ok := d.GetOkExists("automatic_refresh"); ok {
+		proxmoxDataCenterServer["automatic-refresh"] = v.(bool)
+	}
+
 	log.Println("Create proxmoxDataCenterServer - Map = ", proxmoxDataCenterServer)
 
 	addProxmoxDataCenterServerRes, err := client.ApiCall("add-data-center-server", proxmoxDataCenterServer, client.GetSessionID(), true, client.IsProxyUsed())
@@ -204,9 +215,16 @@ func readManagementProxmoxDataCenterServer(d *schema.ResourceData, m interface{}
 	}
 	proxmoxDataCenterServer := showProxmoxDataCenterServerRes.GetData()
 
+	log.Println("Read Proxmox Data Center - Show JSON = ", proxmoxDataCenterServer)
+
 	if v := proxmoxDataCenterServer["name"]; v != nil {
 		_ = d.Set("name", v)
 	}
+
+	if v := proxmoxDataCenterServer["data-center-type"]; v != nil {
+		_ = d.Set("data_center_type", v)
+	}
+
 	// Hostname, username, realm, token-id, and secret are part of the "properties".
 	if proxmoxDataCenterServer["properties"] != nil {
 		propsJson, ok := proxmoxDataCenterServer["properties"].([]interface{})
@@ -238,7 +256,9 @@ func readManagementProxmoxDataCenterServer(d *schema.ResourceData, m interface{}
 	} else {
 		_ = d.Set("tags", nil)
 	}
-
+	if v := proxmoxDataCenterServer["automatic-refresh"]; v != nil {
+		_ = d.Set("automatic_refresh", v)
+	}
 	if v := proxmoxDataCenterServer["color"]; v != nil {
 		_ = d.Set("color", v)
 	}

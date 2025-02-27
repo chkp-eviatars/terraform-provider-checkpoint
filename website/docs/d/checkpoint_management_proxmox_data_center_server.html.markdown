@@ -9,6 +9,10 @@ description: |- Use this data source to get information on an existing Proxmox D
 
 Use this data source to get information on an existing Proxmox Data Center Server.
 
+### Note:
+Proxmox is supported from R82.10 and above
+
+
 ## Example Usage
 
 ```hcl

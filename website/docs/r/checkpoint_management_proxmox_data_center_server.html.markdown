@@ -33,7 +33,7 @@ The following arguments are supported:
 * `name` - (**Required**) Object name.
 * `hostname` - (**Required**) IP Address or hostname of the Proxmox server.
 * `username` - (**Required**) Username of the Proxmox server.
-* `realm` - (**Required**) realm of the Proxmox user.
+* `realm` - (**Required**) Realm of the Proxmox user.
 * `token_id` - (**Required**) API Token Id.
 * `secret` - (**Required**) Secret token API.
 * `certificate_fingerprint` - (Optional) Specify the SHA-1 or SHA-256 fingerprint of the Data Center Server's certificate.
