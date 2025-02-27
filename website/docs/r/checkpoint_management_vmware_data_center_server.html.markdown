@@ -18,13 +18,24 @@ This resource allows you to execute Check Point VMware Data Center Server.
 ```hcl
 resource "checkpoint_management_vmware_data_center_server" "testVMware" {
   name     = "MyVMware"
-  type     = "vcenter" # or "nsxt" or "globalnsxt"
+  type     = "vcenter" # "nsx" or "nsxt" or "globalnsxt"
   username = "USERNAME"
   password = "PASSWORD"
   hostname = "HOSTNAME"
 }
 ```
-
+<br><br>
+```hcl
+resource "checkpoint_management_vmware_data_center_server" "testNsxt" {
+  name     = "MyNSXT"
+  type     = "nsxt"
+  username = "USERNAME"
+  password = "PASSWORD"
+  hostname = "HOSTNAME"
+  policy_mode = false
+  import_vms = false
+}
+```
 ## Argument Reference
 
 The following arguments are supported:

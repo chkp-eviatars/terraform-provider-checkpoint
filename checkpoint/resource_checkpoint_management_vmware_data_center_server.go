@@ -124,11 +124,11 @@ func createManagementVMwareDataCenterServer(d *schema.ResourceData, m interface{
 		}
 		vmwareDataCenterServer["type"] = t
 		if t == "nsxt" {
-			if pm, ok := d.GetOk("policy_mode"); ok {
-				vmwareDataCenterServer["policy_mode"] = pm.(bool)
+			if pm, ok := d.GetOkExists("policy_mode"); ok {
+				vmwareDataCenterServer["policy-mode"] = pm.(bool)
 			}
-			if pm, ok := d.GetOk("import_vms"); ok {
-				vmwareDataCenterServer["import_vms"] = pm.(bool)
+			if pm, ok := d.GetOkExists("import_vms"); ok {
+				vmwareDataCenterServer["import-vms"] = pm.(bool)
 			}
 		}
 	}
