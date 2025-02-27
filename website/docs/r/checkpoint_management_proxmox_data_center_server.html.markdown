@@ -43,3 +43,5 @@ The following arguments are supported:
 * `comments` - (Optional) Comments string.
 * `ignore_warnings` - (Optional) Apply changes ignoring warnings.
 * `ignore_errors` - (Optional) Apply changes ignoring errors. You won't be able to publish such a changes. If ignore-warnings flag was omitted - warnings will also be ignored.
+* `automatic_refresh` - Indicates whether the data center server's content is automatically updated.
+* `data_center_type` - Data center type.

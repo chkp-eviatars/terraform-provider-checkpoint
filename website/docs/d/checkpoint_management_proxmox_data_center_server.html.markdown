@@ -36,3 +36,15 @@ The following arguments are supported:
 
 * `name` - (Optional) Object name.
 * `uid` - (Optional) Object unique identifier.
+* `automatic_refresh` - Indicates whether the data center server's content is automatically updated.
+* `data_center_type` - Data center type.
+* `properties` - Data center properties. properties blocks are documented below.
+* `tags` - Collection of tag objects identified by the name or UID. Level of details in the output corresponds to the number of details for search. This table shows the level of details in the Standard level.
+* `certificate_fingerprint` - Specify the SHA-1 or SHA-256 fingerprint of the Data Center Server's certificate.
+* `unsafe_auto_accept` - When set to false, the current Data Center Server's certificate should be trusted, either by providing the certificate-fingerprint argument or by relying on a previously trusted certificate of this hostname. When set to true, trust the current Data Center Server's certificate as-is.
+* `color` - Color of the object. Should be one of existing colors.
+* `comments` - Comments string.
+
+`properties` supports the following:
+* `name`
+* `value`
