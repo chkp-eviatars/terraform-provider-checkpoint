@@ -2,7 +2,8 @@
 layout: "checkpoint"
 page_title: "checkpoint_management_proxmox_data_center_server"
 sidebar_current: "docs-checkpoint-Resource-checkpoint-management-proxmox-data-center-server"
-description: |- This resource allows you to execute Check Point Proxmox data center server.
+description: |- 
+  This resource allows you to execute Check Point Proxmox data center server.
 ---
 
 # Resource: checkpoint_management_proxmox_data_center_server
@@ -18,9 +19,7 @@ Proxmox is supported from R82.10 and above
 ```hcl
 resource "checkpoint_management_proxmox_data_center_server" "testProxmox" {
   name     = "MyProxmox"
-  username = "USERNAME"
-  realm    = "REALM"
-  token_id = "TOKEN_ID"
+  token_id = "USER@REALM!TOKEN_NAME"
   secret   = "SECRET"
   hostname = "HOSTNAME"
 }
@@ -32,9 +31,7 @@ The following arguments are supported:
 
 * `name` - (**Required**) Object name.
 * `hostname` - (**Required**) IP Address or hostname of the Proxmox server.
-* `username` - (**Required**) Username of the Proxmox server.
-* `realm` - (**Required**) Realm of the Proxmox user.
-* `token_id` - (**Required**) API Token Id.
+* `token_id` - (**Required**) API Token Id. In the format of `<Username>@<Realm>!<Token-Name>`.
 * `secret` - (**Required**) Secret token API.
 * `certificate_fingerprint` - (Optional) Specify the SHA-1 or SHA-256 fingerprint of the Data Center Server's certificate.
 * `unsafe_auto_accept` - (Optional) When set to false, the current Data Center Server's certificate should be trusted, either by providing the certificate-fingerprint argument or by relying on a previously trusted certificate of this hostname. When set to true, trust the current Data Center Server's certificate as-is.

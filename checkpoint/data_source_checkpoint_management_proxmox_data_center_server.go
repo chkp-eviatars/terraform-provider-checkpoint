@@ -27,20 +27,10 @@ func dataSourceManagementProxmoxDataCenterServer() *schema.Resource {
 				Computed:    true,
 				Description: "IP Address or hostname of the Proxmox server.",
 			},
-			"realm": {
-				Type:        schema.TypeString,
-				Computed:    true,
-				Description: "realm of the Proxmox server",
-			},
 			"token_id": {
 				Type:        schema.TypeString,
 				Computed:    true,
-				Description: "API Token Id",
-			},
-			"username": {
-				Type:        schema.TypeString,
-				Computed:    true,
-				Description: "Username of the Proxmox server",
+				Description: "API Token Id, in format Username@Realm!TokenName",
 			},
 			"certificate_fingerprint": {
 				Type:        schema.TypeString,

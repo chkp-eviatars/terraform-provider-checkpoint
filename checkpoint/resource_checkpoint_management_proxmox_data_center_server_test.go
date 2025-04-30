@@ -16,9 +16,7 @@ func TestAccCheckpointManagementProxmoxDataCenterServer_basic(t *testing.T) {
 	var proxmoxDataCenterServerMap map[string]interface{}
 	resourceName := "checkpoint_management_proxmox_data_center_server.test"
 	objName := "tfTestManagementProxmoxDataCenterServer_" + acctest.RandString(6)
-	username := "USERNAME"
-	realm := "REALM"
-	token_id := "TOKEN_ID"
+	token_id := "USER@PAM!TOKEN_ID"
 	secret := "SECRET"
 	hostname := "HOSTNAME"
 
@@ -35,7 +33,7 @@ func TestAccCheckpointManagementProxmoxDataCenterServer_basic(t *testing.T) {
 		CheckDestroy: testAccCheckpointManagementProxmoxDataCenterServerDestroy,
 		Steps: []resource.TestStep{
 			{
-				Config: testAccManagementProxmoxDataCenterServerConfig(objName, hostname, username, realm, token_id, secret),
+				Config: testAccManagementProxmoxDataCenterServerConfig(objName, hostname, token_id, secret),
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckCheckpointManagementProxmoxDataCenterServerExists(resourceName, &proxmoxDataCenterServerMap),
 					testAccCheckCheckpointManagementProxmoxDataCenterServerAttributes(&proxmoxDataCenterServerMap, objName),
@@ -99,17 +97,15 @@ func testAccCheckCheckpointManagementProxmoxDataCenterServerAttributes(proxmoxDa
 	}
 }
 
-func testAccManagementProxmoxDataCenterServerConfig(name string, hostname string, username string, realm string, token_id string, secret string) string {
+func testAccManagementProxmoxDataCenterServerConfig(name string, hostname string, token_id string, secret string) string {
 	return fmt.Sprintf(`
 resource "checkpoint_management_proxmox_data_center_server" "test" {
     name = "%s"
-	username = "%s"
-	realm = "%s"
 	token_id = "%s"
 	secret = "%s"
 	hostname = "%s"
     unsafe_auto_accept = true
 	ignore_warnings = true
 }
-`, name, username, realm, token_id, secret, hostname)
+`, name, token_id, secret, hostname)
 }

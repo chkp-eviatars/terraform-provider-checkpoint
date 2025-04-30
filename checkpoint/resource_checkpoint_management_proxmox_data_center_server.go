@@ -29,20 +29,10 @@ func resourceManagementProxmoxDataCenterServer() *schema.Resource {
 				Required:    true,
 				Description: "IP Address or hostname of the Proxmox server.",
 			},
-			"realm": {
-				Type:        schema.TypeString,
-				Required:    true,
-				Description: "Realm of the Proxmox user.",
-			},
 			"token_id": {
 				Type:        schema.TypeString,
 				Required:    true,
-				Description: "API Token Id.",
-			},
-			"username": {
-				Type:        schema.TypeString,
-				Required:    true,
-				Description: "Username of the Proxmox server",
+				Description: "API Token Id, in format Username@Realm!TokenName",
 			},
 			"secret": {
 				Type:        schema.TypeString,
@@ -119,14 +109,6 @@ func createManagementProxmoxDataCenterServer(d *schema.ResourceData, m interface
 
 	if v, ok := d.GetOk("hostname"); ok {
 		proxmoxDataCenterServer["hostname"] = v.(string)
-	}
-
-	if v, ok := d.GetOk("username"); ok {
-		proxmoxDataCenterServer["username"] = v.(string)
-	}
-
-	if v, ok := d.GetOk("realm"); ok {
-		proxmoxDataCenterServer["realm"] = v.(string)
 	}
 
 	if v, ok := d.GetOk("token_id"); ok {
@@ -300,16 +282,8 @@ func updateManagementProxmoxDataCenterServer(d *schema.ResourceData, m interface
 		proxmoxDataCenterServer["secret"] = d.Get("secret")
 	}
 
-	if d.HasChange("realm") {
-		proxmoxDataCenterServer["realm"] = d.Get("realm")
-	}
-
 	if d.HasChange("token_id") {
 		proxmoxDataCenterServer["token-id"] = d.Get("token_id")
-	}
-
-	if d.HasChange("username") {
-		proxmoxDataCenterServer["username"] = d.Get("username")
 		if v := d.Get("secret"); v != nil && v != "" {
 			proxmoxDataCenterServer["secret"] = v
 		}

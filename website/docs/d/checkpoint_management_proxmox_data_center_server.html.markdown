@@ -2,7 +2,8 @@
 layout: "checkpoint"
 page_title: "checkpoint_management_proxmox_data_center_server"
 sidebar_current: "docs-checkpoint-Resource-checkpoint-management-proxmox-data-center-server"
-description: |- Use this data source to get information on an existing Proxmox Data Center Server.
+description: |- 
+  Use this data source to get information on an existing Proxmox Data Center Server.
 ---
 
 # Resource: checkpoint_management_proxmox_data_center_server
@@ -18,9 +19,7 @@ Proxmox is supported from R82.10 and above
 ```hcl
 resource "checkpoint_management_proxmox_data_center_server" "testProxmox" {
   name     = "MyProxmox"
-  username = "USERNAME"
-  realm    = "REALM"
-  token_id = "TOKEN_ID"
+  token_id = "USER@REALM!TOKEN_NAME"
   secret   = "SECRET"
   hostname = "HOSTNAME"
 }

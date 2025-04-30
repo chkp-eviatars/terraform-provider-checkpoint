@@ -13,9 +13,7 @@ func TestAccDataSourceCheckpointManagementProxmoxDataCenterServer_basic(t *testi
 	objName := "tfTestManagementDataProxmoxDataCenterServer_" + acctest.RandString(6)
 	resourceName := "checkpoint_management_proxmox_data_center_server.proxmox_data_center_server"
 	dataSourceName := "data.checkpoint_management_proxmox_data_center_server.proxmox_data_center_server"
-	username := "USERNAME"
-	realm := "REALM"
-	token_id := "TOKEN_ID"
+	token_id := "USER@PAM!TOKEN_ID"
 	secret := "SECRET"
 	hostname := "HOSTNAME"
 
@@ -29,7 +27,7 @@ func TestAccDataSourceCheckpointManagementProxmoxDataCenterServer_basic(t *testi
 		Providers: testAccProviders,
 		Steps: []resource.TestStep{
 			{
-				Config: testAccDataSourceManagementProxmoxDataCenterServerConfig(objName, hostname, username, realm, token_id, secret),
+				Config: testAccDataSourceManagementProxmoxDataCenterServerConfig(objName, hostname, token_id, secret),
 				Check: resource.ComposeTestCheckFunc(
 					resource.TestCheckResourceAttrPair(dataSourceName, "name", resourceName, "name"),
 				),
@@ -39,12 +37,10 @@ func TestAccDataSourceCheckpointManagementProxmoxDataCenterServer_basic(t *testi
 
 }
 
-func testAccDataSourceManagementProxmoxDataCenterServerConfig(name string, hostname string, username string, realm string, token_id string, secret string) string {
+func testAccDataSourceManagementProxmoxDataCenterServerConfig(name string, hostname string, token_id string, secret string) string {
 	return fmt.Sprintf(`
 resource "checkpoint_management_proxmox_data_center_server" "proxmox_data_center_server" {
     name = "%s"
-	username = "%s"
-	realm = "%s"
 	token_id = "%s"
 	secret = "%s"
 	hostname = "%s"
@@ -55,5 +51,5 @@ resource "checkpoint_management_proxmox_data_center_server" "proxmox_data_center
 data "checkpoint_management_proxmox_data_center_server" "proxmox_data_center_server" {
     name = "${checkpoint_management_proxmox_data_center_server.proxmox_data_center_server.name}"
 }
-`, name, username, realm, token_id, secret, hostname)
+`, name, token_id, secret, hostname)
 }
